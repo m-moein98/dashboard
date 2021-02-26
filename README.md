@@ -49,7 +49,7 @@ You will also see any lint errors in the console.
 
 It exports front end for deployment.\
 
-* [here is postman json](https://www.git-tower.com/learn/ebook) All api urls are documented and ready for test in postman and u only need to import this in the app!
+* [here is postman json](https://github.com/m-moein98/dashboard/blob/main/backend/postman.json) All api urls are documented and ready for test in postman and u only need to import this in the app!
 
 **Note: this project uses tailwind css but dont worry u can change it to anything u want like pure css in few minutes!**
 

@@ -24,7 +24,7 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-* [here is postman json](https://www.git-tower.com/learn/ebook) All api urls are documented and ready for test in postman and u only need to import this in the app!
+* [here is postman json](https://github.com/m-moein98/dashboard/blob/main/backend/postman.json) All api urls are documented and ready for test in postman and u only need to import this in the app!
 
 
 **Note: this project uses sqlite db but dont worry u can change it to anything u want like postgress in less than a minute!**
