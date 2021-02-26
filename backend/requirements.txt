@@ -1,0 +1,5 @@
+django == 3.1.5
+pillow == 8.0.1
+djoser == 2.1.0
+djangorestframework_simplejwt == 4.6.0
+social-auth-app-django == 4.0.0
