@@ -33,7 +33,6 @@ class SignupView(APIView):
             username = data['username']
             password = data['password']
             re_password = data['re_password']
-
             if re_password == password:
                 if User.objects.filter(username=username).exists():
                     return Response({'error':'Username already exists'})
@@ -56,16 +55,16 @@ class LoginView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
-        data = self.request.data
-        username = data['username']
-        password = data['password']
         try:
+            data = self.request.data
+            username = data['username']
+            password = data['password']
             user = auth.authenticate(username=username, password=password)
             if user is not None:
                 auth.login(request, user)
                 return Response({'success':'user auhtneticated'})
             else:
-                return Response({'success':'user not auhtneticated'})
+                return Response({'error':'user not auhtneticated'})
         except:
             return Response({'error':'something went wrong at login'})
 
