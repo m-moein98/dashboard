@@ -16,9 +16,9 @@ class CheckAuthenticatedView(APIView):
             isAuthenticated = User.is_authenticated
 
             if isAuthenticated:
-                return Response({'isAuthenticated':'success'})
+                return Response({'success':'isAuthenticated'})
             else:
-                return Response({'isAuthenticated':'error'})
+                return Response({'error':'isAuthenticated'})
         except:
             return Response({'error':'something went wrong while checking authentication status'})
 
@@ -82,9 +82,9 @@ class DeleteAcountView(APIView):
         user = self.request.user
         try:
             user = user.objects.filter(id=user.id).delete()
-            return Response({'success','user deleted successfully'})
+            return Response({'success':'user deleted successfully'})
         except:
-            return Response({'error','something went wrong while trying to delete user'})
+            return Response({'error':'something went wrong while trying to delete user'})
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRFToken(APIView):
@@ -97,6 +97,9 @@ class GetUsersView(APIView):
     permission_classes = (permissions.IsAdminUser,)
 
     def get(self, request, format=None):
-        users = User.objects.all()
-        users = UserSerializer(users, many=True)
-        return Response(users.data)
+        try:
+            users = User.objects.all()
+            users = UserSerializer(users, many=True)
+            return Response({'success':users.data})
+        except:
+            return Response({'error':'something went wrong while trying to get users list'})
