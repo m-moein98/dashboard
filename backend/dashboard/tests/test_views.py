@@ -14,6 +14,7 @@ class TestViews(TestSetUp):
     def test_user_can_update_profile_with_correct_data(self):
         self.profile_data['user'] = self.profile_data['user'].id
         self.client.login(username=self.signin_data['username'], password=self.signin_data['password'])
+        UserProfile.objects.create(user=User.objects.get(id=self.profile_data['user']), first_name='', last_name='', phone='', city='')
 
         res = self.client.put(self.update_url, self.profile_data, format="json")
         res_type = list(res.data.keys())[0] # it can be error or success
