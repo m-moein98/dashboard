@@ -1,10 +1,11 @@
+from rest_framework import status
 from rest_framework.views import APIView
-from .models import UserProfile
-from .serializers import UserProfileSerializer
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
+from .models import UserProfile
+from .serializers import UserProfileSerializer
 
 
 class UpdateProfileView(APIView):
@@ -25,7 +26,7 @@ class UpdateProfileView(APIView):
 
             return Response({'profile':user_profile.data,'username':str(user.username)})
         except:
-            return Response({'error':'something unexpected happend while trying to update the profile'})
+            return Response({'error':'something unexpected happend while trying to update the profile'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class GetUserProfileView(APIView):
     def get(self, requet, format=None):
@@ -38,4 +39,4 @@ class GetUserProfileView(APIView):
 
             return Response({'profile':user_profile.data,'username':str(username)})
         except:
-            return Response({'error':'profile list doesnt exists'})
+            return Response({'error':'profile list doesnt exists'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

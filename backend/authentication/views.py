@@ -1,11 +1,11 @@
+from rest_framework import permissions, status
+from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import permissions
-from dashboard.models import UserProfile
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
-from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.contrib import auth
+from dashboard.models import UserProfile
 from .serializers import UserSerializer
 
 
@@ -16,11 +16,11 @@ class CheckAuthenticatedView(APIView):
             isAuthenticated = User.is_authenticated
 
             if isAuthenticated:
-                return Response({'success':'isAuthenticated'})
+                return Response({'success':'user authenticated'})
             else:
-                return Response({'error':'isAuthenticated'})
+                return Response({'error':'user not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
         except:
-            return Response({'error':'something went wrong while checking authentication status'})
+            return Response({'error':'something went wrong while checking authentication status'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @method_decorator(csrf_protect, name='dispatch')
 class SignupView(APIView):
@@ -38,17 +38,17 @@ class SignupView(APIView):
                     return Response({'error':'Username already exists'})
                 else:
                     if len(password) < 6:
-                        return Response({'error':'password must be more than 6 digits'})
+                        return Response({'error':'password must be more than 6 digits'}, status=status.HTTP_400_BAD_REQUEST)
                     else:
                         user = User.objects.create_user(username=username, password=password)
                         user.save()
                         user = User.objects.get(username=username)
                         user_profile = UserProfile.objects.create(user=user, first_name='', last_name='', phone='', city='')
-                        return Response({'success':'user created successfully'})
+                        return Response({'success':'user created successfully'}, status=status.HTTP_201_CREATED)
             else:
-                return Response({'error':'Password doesnt match'})
+                return Response({'error':'Password doesnt match'}, status=status.HTTP_403_FORBIDDEN)
         except:
-            return Response({'error':'something went wrong while signup'})
+            return Response({'error':'something went wrong while signup'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class LoginView(APIView):
@@ -64,9 +64,9 @@ class LoginView(APIView):
                 auth.login(request, user)
                 return Response({'success':'user auhtneticated'})
             else:
-                return Response({'error':'user not auhtneticated'})
+                return Response({'error':'user not auhtneticated'}, status=status.HTTP_401_UNAUTHORIZED)
         except:
-            return Response({'error':'something went wrong at login'})
+            return Response({'error':'something went wrong at login'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class LogoutView(APIView):
@@ -75,7 +75,7 @@ class LogoutView(APIView):
             auth.logout(request)
             return Response({'success':'logged out'})
         except:
-            return Response({'error':'something went wrong while logging out'})
+            return Response({'error':'something went wrong while logging out'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class DeleteAcountView(APIView):
     def delete(self, request, format=None):
@@ -84,7 +84,7 @@ class DeleteAcountView(APIView):
             user = user.objects.filter(id=user.id).delete()
             return Response({'success':'user deleted successfully'})
         except:
-            return Response({'error':'something went wrong while trying to delete user'})
+            return Response({'error':'something went wrong while trying to delete user'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRFToken(APIView):
@@ -102,4 +102,4 @@ class GetUsersView(APIView):
             users = UserSerializer(users, many=True)
             return Response({'success':users.data})
         except:
-            return Response({'error':'something went wrong while trying to get users list'})
+            return Response({'error':'something went wrong while trying to get users list'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
