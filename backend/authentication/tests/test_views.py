@@ -11,12 +11,6 @@ class TestViews(TestSetUp):
 
         self.assertEqual(res.status_code, 500, res_message)
 
-    def test_user_can_register_with_incorrect_data(self):
-        res = self.client.post(self.register_url, self.incorrect_signup_data)
-        res_message = list(res.data.values())[0]
-
-        self.assertEqual(res.status_code, 403, res_message)
-
     def test_user_can_register_with_correct_data(self):
         res = self.client.post(
             self.register_url, self.correct_signup_data)

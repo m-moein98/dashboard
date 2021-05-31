@@ -3,6 +3,10 @@ from django.urls import reverse
 
 
 class TestSetUp(APITestCase):
+    """
+    This class provides test informations
+    """
+
     def setUp(self):
         self.authenticated_url = reverse("authenticated")
         self.register_url = reverse("register")
@@ -12,31 +16,23 @@ class TestSetUp(APITestCase):
         self.csrf_cookie_url = reverse("csrf_cookie")
         self.get_users_url = reverse("get_users")
 
-        # passwords are diffrent
-        self.incorrect_signup_data = {
-            'username':'SomeRandomUsername',
-            'password':'Password4Test9754654',
-            're_password':'Password4Test'
-        }
-
         self.correct_signup_data = {
-            'username':'SomeRandomUsername',
-            'password':'Password4Test',
-            're_password':'Password4Test'
+            'username': 'SomeRandomUsername',
+            'password': 'Password4Test'
         }
-
 
         # credentials are wrong
         self.incorrect_signin_data = {
-            'username':'SomeRandomUsername',
-            'password':'Password4Test9754654',
+            'username': 'SomeRandomUsername',
+            'password': 'Password4Test9754654',
         }
-        
+
         self.correct_signin_data = {
-            'username':'SomeRandomUsername',
-            'password':'Password4Test',
+            'username': 'SomeRandomUsername',
+            'password': 'Password4Test',
         }
-        
+
         return super().setUp()
+
     def tearDown(self):
         return super().tearDown()

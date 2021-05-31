@@ -9,34 +9,44 @@ from .serializers import UserProfileSerializer
 
 
 class UpdateProfileView(APIView):
-    def put(self, request, format=None):
+    """
+        The API recieves new profile data from user, updates the profile data
+    """
+
+    def put(self, request):
         try:
-            user = self.request.user
-            username= user.username
-            data = self.request.data
+            user = request.user
+            username = user.username
+            data = request.data
             first_name = data['first_name']
             last_name = data['last_name']
             phone = data['phone']
             city = data['city']
 
             user = User.objects.get(id=user.id)
-            UserProfile.objects.filter(user=user).update(first_name=first_name,last_name=last_name, phone=phone,city=city)
+            UserProfile.objects.filter(user=user).update(
+                first_name=first_name, last_name=last_name, phone=phone, city=city)
             user_profile = UserProfile.objects.get(user=user)
             user_profile = UserProfileSerializer(user_profile)
 
-            return Response({'profile':user_profile.data,'username':str(user.username)})
+            return Response({'profile': user_profile.data, 'username': username})
         except:
-            return Response({'error':'something unexpected happend while trying to update the profile'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error': 'something unexpected happend while trying to update the profile'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class GetUserProfileView(APIView):
-    def get(self, requet, format=None):
+    """
+        The API receives plain request from a user, returns the profile data
+    """
+
+    def get(self, request):
         try:
-            user = self.request.user
+            user = request.user
             username = user.username
 
             user_profile = UserProfile.objects.filter(user=user)
             user_profile = UserProfileSerializer(user_profile, many=True)
 
-            return Response({'profile':user_profile.data,'username':str(username)})
+            return Response({'profile': user_profile.data, 'username': str(username)})
         except:
-            return Response({'error':'profile list doesnt exists'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error': 'profile list doesnt exists'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
