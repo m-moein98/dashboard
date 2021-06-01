@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c0bcc8b9-05b3-44da-ad7f-3a1c3a0abd1d",
-		"name": "authentication djact",
+		"_postman_id": "1fff0c4d-2566-4675-8d9d-ec8c8dabdfd4",
+		"name": "API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,7 +12,7 @@
 				"header": [
 					{
 						"key": "X-CSRFToken",
-						"value": "Ql9KQkjdDErQVC0ar0C1PVctmUp3SwInK5X7SFGUNEj2trrQnCeJYz9OXsbrQ5jt",
+						"value": "",
 						"type": "text"
 					},
 					{
@@ -26,7 +26,7 @@
 					"raw": "{\r\n    \"username\":\"\",\r\n    \"password\":\"\",\r\n    \"re_password\":\"\"\r\n}"
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/accounts/register",
+					"raw": "http://127.0.0.1:8000/api/auth/register",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -36,7 +36,8 @@
 					],
 					"port": "8000",
 					"path": [
-						"accounts",
+						"api",
+						"auth",
 						"register"
 					]
 				}
@@ -50,7 +51,7 @@
 				"header": [
 					{
 						"key": "X-CSRFToken",
-						"value": "8VkCp4BvScMdPw8FHOjhLoS4x5V0cER6TOV22zTKCq9SPapu55kibJsoUjOcDYCK",
+						"value": "",
 						"type": "text"
 					},
 					{
@@ -64,7 +65,7 @@
 					"raw": "{\r\n    \"username\":\"\",\r\n    \"password\":\"\"\r\n}"
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/accounts/login",
+					"raw": "http://127.0.0.1:8000/api/auth/accounts/login",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -74,6 +75,8 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
+						"auth",
 						"accounts",
 						"login"
 					]
@@ -87,7 +90,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/accounts/csrf_cookie",
+					"raw": "http://127.0.0.1:8000/api/auth/csrf_cookie",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -97,7 +100,8 @@
 					],
 					"port": "8000",
 					"path": [
-						"accounts",
+						"api",
+						"auth",
 						"csrf_cookie"
 					]
 				}
@@ -111,12 +115,12 @@
 				"header": [
 					{
 						"key": "X-CSRFToken",
-						"value": "Q5NOY8xxcLrrPpVMnlFgXk5jKIMpfkCi1girDtb35J9eq79eLfSe9OMeUNU1GT7i",
+						"value": "",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/accounts/authenticated",
+					"raw": "http://127.0.0.1:8000/api/auth/authenticated",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -126,7 +130,8 @@
 					],
 					"port": "8000",
 					"path": [
-						"accounts",
+						"api",
+						"auth",
 						"authenticated"
 					]
 				}
@@ -140,12 +145,12 @@
 				"header": [
 					{
 						"key": "X-CSRFToken",
-						"value": "Ql9KQkjdDErQVC0ar0C1PVctmUp3SwInK5X7SFGUNEj2trrQnCeJYz9OXsbrQ5jt",
+						"value": "",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/accounts/logout",
+					"raw": "http://127.0.0.1:8000/api/auth/logout",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -155,7 +160,8 @@
 					],
 					"port": "8000",
 					"path": [
-						"accounts",
+						"api",
+						"auth",
 						"logout"
 					]
 				}
@@ -169,7 +175,7 @@
 				"header": [
 					{
 						"key": "X-CSRFToken",
-						"value": "8VkCp4BvScMdPw8FHOjhLoS4x5V0cER6TOV22zTKCq9SPapu55kibJsoUjOcDYCK",
+						"value": "",
 						"type": "text"
 					},
 					{
@@ -179,7 +185,7 @@
 					},
 					{
 						"key": "X-CSRFToken",
-						"value": "WWuYC9lWU86H7DYRtVmlb6s4xgrX5ZnDqLlujbw54T81jYrYK7nF54LLi49IcB9t",
+						"value": "",
 						"type": "text"
 					}
 				],
@@ -188,7 +194,7 @@
 					"raw": "{\r\n    \"username\":\"\",\r\n    \"password\":\"\"\r\n}"
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/accounts/delete",
+					"raw": "http://127.0.0.1:8000/api/auth/delete",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -198,7 +204,8 @@
 					],
 					"port": "8000",
 					"path": [
-						"accounts",
+						"api",
+						"auth",
 						"delete"
 					]
 				}
@@ -211,7 +218,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/accounts/get_users",
+					"raw": "http://127.0.0.1:8000/api/auth/get_users",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -221,7 +228,8 @@
 					],
 					"port": "8000",
 					"path": [
-						"accounts",
+						"api",
+						"auth",
 						"get_users"
 					]
 				}
@@ -235,12 +243,12 @@
 				"header": [
 					{
 						"key": "X-CSRFToken",
-						"value": "ujxb9b2awntxtsndtn1o1wokcqrxcdl5",
+						"value": "",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/dashboard/profile",
+					"raw": "http://127.0.0.1:8000/api/dashboard/profile",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -250,6 +258,7 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"dashboard",
 						"profile"
 					]
@@ -264,7 +273,7 @@
 				"header": [
 					{
 						"key": "X-CSRFToken",
-						"value": "OqpZW6ONX8IQ9Qtftoq77wqjM3AClLXsQjVkx4QfBSMJGeNtPoIX4aqODw2AHDSS",
+						"value": "",
 						"type": "text"
 					},
 					{
@@ -278,7 +287,7 @@
 					"raw": "{\r\n    \"first_name\":\"\",\r\n    \"last_name\":\"\",\r\n    \"phone\":\"\",\r\n    \"city\":\"\"\r\n}"
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/dashboard/update",
+					"raw": "http://127.0.0.1:8000/api/dashboard/update",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -288,6 +297,7 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"dashboard",
 						"update"
 					]
