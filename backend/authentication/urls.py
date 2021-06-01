@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import SignupView, GetCSRFToken, CheckAuthenticatedView, LoginView, LogoutView, DeleteAcountView, GetUsersView
+
+
 urlpatterns = [
     path('authenticated', CheckAuthenticatedView.as_view(), name="authenticated"),
     path('register', SignupView.as_view(), name="register"),
